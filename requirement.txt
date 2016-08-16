@@ -1,0 +1,20 @@
+Project: 
+Master-Detail
+
+Directions: 
+Create a Single Page application with each feature below.  Use angular js 1.4 and bootstrap ( any version )
+
+Overview: 
+You will create a master-detail application with a list of employees on the left and a detail view in the center.  The user will be able to create a new employee. You will not have a server for this so all data must be saved in localStorage. 
+
+Acceptance Criteria: 
+
+-Application should show a list of employees on the left. Each list item will show the name of the employee.
+-When an item is selected in the employee list, the details for that employee will show up in the center of the page. 
+-The details field for each employee will include:  firstName, lastName, jobTitle, address, salary, yearWithCompany.
+-Each detail view will have a read only mode and and edit mode.  There should be a button to toggle between the two. There should be a save button to save any edits. 
+-Each detail view should have a delete button that can be pressed to delete the employee. 
+-Above the employee list there should be an 'Add' button to add a new employee.  Clicking this will show the new employee form in the center. 
+-employee list, employeedetail and newEmpoyee form should all be individual directives that can be moved around to change layout. 
+
+

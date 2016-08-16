@@ -1,0 +1,41 @@
+<div>
+    <div>
+        <div style="margin-top:10px; text-align:right;">
+            <button ng-if="!isEditing" ng-click="editEmployee()" class="btn waves-effect waves-light" type="submit" name="action">Edit
+              <i class="material-icons right"></i>
+            </button>
+
+            <button ng-if="isEditing" ng-click="saveEmployee()" class="btn waves-effect waves-light" type="submit" name="action">Save
+              <i class="material-icons right"></i>
+            </button> 
+
+            <button ng-if="1" ng-click="deleteEmployee()" class="btn waves-effect waves-light" type="submit" name="action">Delete
+              <i class="material-icons right"></i>
+            </button>
+        </div>
+
+        <p>First Name: 
+          <span class="color">{{employee.first_name}}</span>          
+        </p>
+
+        <p>Last Name: 
+          <span class="color">{{employee.last_name}}</span>
+        </p>
+
+        <p>Job Title: 
+          <span class="color">{{employee.job_title}}</span>
+        </p>
+
+        <p>Address: 
+          <span class="color">{{employee.address}}</span>
+        </p>
+
+        <p>Salary: 
+          <span class="color">{{employee.salary}}</span>
+        </p>
+
+        <p>Year: 
+          <span class="color">{{employee.year}}</span>
+        </p>	
+    </div>    	
+</div>

@@ -1,0 +1,44 @@
+<div>
+
+   <div style="margin-top:10px; text-align:right;">        
+    <!-- ng-disabled="employee.first_name=='' || employee.last_name=='' || employee.job_title=='' || employee.address=='' || employee.salary=='' " -->
+        <button ng-click="saveEmployee()"  class="btn waves-effect waves-light" type="submit" name="action">Save
+          <i class="material-icons right"></i>
+        </button> 
+
+        <button  ng-click="cancle()" class="btn waves-effect waves-light" type="submit" name="action">Cancel
+          <i class="material-icons right"></i>
+        </button>
+
+    </div>
+
+	<div class="input-field col s12">
+      <input type="text" ng-model="employee.first_name" class="validate">
+      <label class="active" for="first_name">First Name</label>
+    </div>
+	
+	<div class="input-field col s12">
+      <input type="text" ng-model="employee.last_name" class="validate">
+      <label class="active" for="last_name">Last Name</label>
+    </div>
+	
+	<div class="input-field col s12">
+      <input type="text" ng-model="employee.job_title" class="validate">
+      <label class="active" for="job_title">Job Title</label>
+    </div>
+	
+	<div class="input-field col s12">
+      <input type="text" ng-model="employee.address" class="validate">
+      <label class="active" for="address">Address</label>
+    </div>
+	
+	<div class="input-field col s12">
+      <input type="text" ng-model="employee.salary" class="validate">
+      <label class="active" for="salary">Salary</label>
+    </div>
+	
+	<div class="input-field col s12">
+      <input type="text" ng-model="employee.year" class="validate">
+      <label class="active" for="year">Year</label>
+    </div>		    	
+</div>

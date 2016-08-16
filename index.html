@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html>
+	
+<title>Master-Detail</title>
+<link rel="stylesheet" type="text/css" href="./css/styles.css">
+<link rel="stylesheet" href="css/materialize.min.css">
+
+
+<body>
+
+<div ng-app="masterDetail">
+	<div class="container" ng-controller="masterDetailController">
+
+		<div class="row">
+		    <div class="col s4">				
+		        <employee-list employees="employees"></employee-list>
+		    </div>
+
+		    <div class="col s7 offset-s1">		    	
+		    	<employee-details ng-if="!isEditMode"></employee-details>
+		    	<employee-form ng-if="isEditMode"></employee-form>
+		    </div>
+
+		</div>
+	</div>
+</div>
+
+</body>
+<script src="./js/libs/jquery.min.js"></script>
+<script src="js/libs/materialize.min.js"></script>  
+<script src="./js/libs/angular.min.js"></script>
+<script src="./js/app.js"></script>
+<script src="./js/services/employee/employeeServices.js"></script>
+<script src="./js/directives/employeeList/employeeListDirective.js"></script>
+<script src="./js/directives/employeeForm/employeeFormDirective.js"></script>
+<script src="./js/directives/employeeDetails/employeeDetailsDirective.js"></script>
+
+
+</html>
+

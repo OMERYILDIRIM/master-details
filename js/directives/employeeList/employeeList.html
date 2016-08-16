@@ -1,0 +1,12 @@
+<div>
+
+	<h5 class="color">
+		Employee List
+		<a ng-click="addEmployee()" class="btn-floating btn waves-effect waves-light" style="float: right;">+</a>
+	</h5>
+    <!-- list goes here -->
+
+	<div class="collection" style="border: none;">
+   		<a ng-click="selectEmployee(employee)" href="" class="collection-item" ng-repeat="employee in employees track by $index">{{employee.first_name}}</a>
+  	</div>
+</div>
