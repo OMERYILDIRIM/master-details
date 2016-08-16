@@ -19,6 +19,4 @@ angular.module('masterDetail').service('EmployeeServices', function(){
    	this.getEditType = function(){
    		return this.editNewEmployee;
    	}
-
-
 });

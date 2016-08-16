@@ -2,3 +2,12 @@
 	color: #26a69a;
 	display: block;
 }
+
+.collection{
+	border: none;
+}
+
+.employee-form-button-container, .employee-details-button-container {
+	margin-top:10px; 
+	text-align:right;
+}

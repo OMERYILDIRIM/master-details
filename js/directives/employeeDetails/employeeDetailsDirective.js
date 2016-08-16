@@ -27,7 +27,6 @@ angular.module('masterDetail').directive("employeeDetails",function (EmployeeSer
               $scope.$emit('deleteAnEmployee');          
           }
 
-
           $scope.$on('showEmployeeDetails', function(){              
             $scope.employee = EmployeeServices.getEmployee();
           });

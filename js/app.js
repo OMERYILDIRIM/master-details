@@ -1,11 +1,8 @@
 var app = angular.module('masterDetail', []);
 
-	//controller inheritence using $controller service
 	app.controller('masterDetailController', function($scope, EmployeeServices, $timeout) {	  
 	  	
 	  	$scope.isEditMode = false;
-
-	  	
 
 	  	$scope.$on('employeeSelected', function(){	  		
 	  		$scope.$broadcast("showEmployeeDetails", function(){})
@@ -47,35 +44,13 @@ var app = angular.module('masterDetail', []);
 
 	  	$scope.$on('editAnEmployee', function(data){	
 	  		console.log("editEmployeeInEmployeeForm in App controller")
-	  		$scope.isEditMode = true;  			  			  			  		
+	  		$scope.isEditMode = true;
 	  		$timeout(function() {
               $scope.$broadcast("editAnEmployeeInEmployeeForm", function(){})
           }, 10);
 	  	})
 
-	  	$scope.$on('saveEditedEmployee', function(event,data){	  			  			  		
-	  		// console.log($scope.employees[iterator].first_name == data.first_name)
-	  		// for(var iterator = 0; iterator< $scope.employees.length; iterator++){
-	  		// 	if($scope.employees[iterator].first_name == data.first_name){
-	  		// 		$scope.employees[iterator] = data;
-	  		// 		alert("true");
-	  		// 		break;
-	  		// 	}
-	  		// }
-	  		alert("hi")
-	  	})
-
-	  	
-          
-
-	  	
-
-
-
-
-
-
-	  	$scope.employees = [
+	    $scope.employees = [
 	  		{
 			  "first_name": "Kelly",
 			  "last_name": "Henry",
@@ -98,10 +73,6 @@ var app = angular.module('masterDetail', []);
 			  "salary": "$4.41",
 			  "year": 54
 			}]
-
-
-
-		
 	});
 
 

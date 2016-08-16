@@ -1,8 +1,8 @@
 <div>
 
-   <div style="margin-top:10px; text-align:right;">        
-    <!-- ng-disabled="employee.first_name=='' || employee.last_name=='' || employee.job_title=='' || employee.address=='' || employee.salary=='' " -->
-        <button ng-click="saveEmployee()"  class="btn waves-effect waves-light" type="submit" name="action">Save
+   <div class="employee-form-button-container">        
+    <!-- ng-disabled="employee.first_name=='' || employee.last_name=='' || employee.job_title=='' || employee.address=='' || employee.salary=='' || employee.year==''" -->
+        <button   ng-click="saveEmployee()"  class="btn waves-effect waves-light" type="submit" name="action">Save
           <i class="material-icons right"></i>
         </button> 
 
@@ -40,5 +40,5 @@
 	<div class="input-field col s12">
       <input type="text" ng-model="employee.year" class="validate">
       <label class="active" for="year">Year</label>
-    </div>		    	
+  </div>		    	
 </div>

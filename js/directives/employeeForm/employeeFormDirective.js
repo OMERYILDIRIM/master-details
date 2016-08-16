@@ -30,14 +30,8 @@ angular.module('masterDetail').directive("employeeForm",function (EmployeeServic
             $scope.$emit('cancleAddingNewEmployee');
           }
 
-          $scope.$on('editAnEmployee', function(event, data){        
-              console.log("employeeForm")
-              console.log(data)
-          })
-
           $scope.$on('editAnEmployeeInEmployeeForm', function(event, data){                 
-              $scope.employee = EmployeeServices.getEmployee();
-              console.log(data)
+              $scope.employee = EmployeeServices.getEmployee();              
           })
         },
 
