@@ -1,10 +1,16 @@
 var app = angular.module('masterDetail', []);
 
-	app.controller('masterDetailController', function($scope, EmployeeServices, $timeout) {	  
-	  	
-	  	$scope.isEditMode = false;
+	app.controller('masterDetailController', function($scope, EmployeeServices, $timeout) {
 
-	  	$scope.$on('employeeSelected', function(){	  		
+		$scope.isEditMode = false;
+
+		// setting localStorage employees with an empty array for the very first time.
+		var isLocalStorageSet = localStorage.getItem("employees");
+		if(isLocalStorageSet == null || isLocalStorageSet == undefined || isLocalStorageSet == "" ||isLocalStorageSet == "undefined" || isLocalStorageSet == "null"){			
+			EmployeeServices.setEmployees([])	
+		}			
+		
+	  	$scope.$on('employeeSelected', function(){	  		  		
 	  		$scope.$broadcast("showEmployeeDetails", function(){})
 	  	})
 
@@ -17,13 +23,15 @@ var app = angular.module('masterDetail', []);
 	  			$scope.employees.push(data);
 	            $scope.isEditMode = false;
 	            EmployeeServices.setEmployee($scope.employees[$scope.employees.length-1]);
-	            EmployeeServices.setEditType(false)
+	            EmployeeServices.setEditType(false)	            
+	            $scope.employees = EmployeeServices.refresh($scope.employees)
 	  		}else{
 
 		  		for(var iterator = 0; iterator< $scope.employees.length; iterator++){
 		  			if($scope.employees[iterator].first_name == data.first_name){
 		  				$scope.employees[iterator] = data;
 		  				$scope.isEditMode = false;
+		  				$scope.employees = EmployeeServices.refresh($scope.employees)
 		  				break;		  				
 		  			}
 		  		}
@@ -34,12 +42,25 @@ var app = angular.module('masterDetail', []);
               $scope.isEditMode = false;
         })
 
-        $scope.$on('deleteAnEmployee', function(){	  			  			  		
-	  		$scope.$broadcast("deleteEmployeeFromList", function(data){})
-	  	})
-
-	  	$scope.$on('employeeDeletedFromList', function(data){	  			  			  		
-	  		$scope.$broadcast("updateEmployeeDetailsWithNextEmployee", function(){})
+        $scope.$on('deleteAnEmployee', function(){	  			  			  			  		
+	  		if($scope.employees.length){
+	  		var selectedEmployee = EmployeeServices.getEmployee(); 	          	       
+                if(selectedEmployee){
+                    for(var iterator = 0; iterator < $scope.employees.length; iterator++ ){
+                      if(selectedEmployee.first_name == $scope.employees[iterator].first_name){
+                        $scope.employees.splice(iterator,1);
+                        $scope.employees = EmployeeServices.refresh($scope.employees) 
+                        if(iterator == 0){
+                          EmployeeServices.setEmployee($scope.employees[iterator]);
+                        }else{
+                          EmployeeServices.setEmployee($scope.employees[iterator-1]);                            
+                        }
+                        $scope.$broadcast("updateEmployeeDetailsWithNextEmployee", function(){})                
+                        break;                                           
+                      }
+                    }
+                }
+            } 
 	  	})
 
 	  	$scope.$on('editAnEmployee', function(data){	
@@ -50,29 +71,8 @@ var app = angular.module('masterDetail', []);
           }, 10);
 	  	})
 
-	    $scope.employees = [
-	  		{
-			  "first_name": "Kelly",
-			  "last_name": "Henry",
-			  "job_title": "Environmental Specialist",
-			  "address": "16 Bartillon Plaza",
-			  "salary": "$5.82",
-			  "year": 10
-			}, {
-			  "first_name": "Melissa",
-			  "last_name": "Cunningham",
-			  "job_title": "Community Outreach Specialist",
-			  "address": "370 Merry Parkway",
-			  "salary": "$4.00",
-			  "year": 38
-			}, {
-			  "first_name": "Roy",
-			  "last_name": "Clark",
-			  "job_title": "Help Desk Operator",
-			  "address": "34 Hollow Ridge Plaza",
-			  "salary": "$4.41",
-			  "year": 54
-			}]
+        $scope.employees = EmployeeServices.getEmployees()
+		
 	});
 
 

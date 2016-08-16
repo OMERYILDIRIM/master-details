@@ -2,9 +2,9 @@ angular.module('masterDetail').service('EmployeeServices', function(){
 
 	this.selectedEmpolyee = {};
 	this.editNewEmployee = false;
+   
 
    	this.setEmployee = function(selectEmployee){
-   		console.log(selectEmployee)
    		this.selectedEmpolyee = selectEmployee;
    	}
 
@@ -19,4 +19,19 @@ angular.module('masterDetail').service('EmployeeServices', function(){
    	this.getEditType = function(){
    		return this.editNewEmployee;
    	}
+
+      this.setEmployees = function(employees){         
+         localStorage.setItem('employees', JSON.stringify(employees));
+      }
+
+      this.getEmployees = function(){
+         var employeesString = localStorage.getItem("employees")                    
+         var employeesArray = JSON.parse(employeesString);         
+         return employeesArray;
+      }
+
+      this.refresh = function(employeesArray){
+         this.setEmployees(employeesArray);
+         return this.getEmployees();
+      }
 });

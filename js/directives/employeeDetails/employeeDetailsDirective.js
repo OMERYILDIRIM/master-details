@@ -11,7 +11,7 @@ angular.module('masterDetail').directive("employeeDetails",function (EmployeeSer
         },
 
         controller: function($scope, $element, $attrs){
-          console.log("employeeDetails directive executed");
+          
           $scope.isEditing = false;
 
           $scope.editEmployee = function(){ 

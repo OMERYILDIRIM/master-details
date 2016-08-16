@@ -11,7 +11,9 @@
 
 <div ng-app="masterDetail">
 	<div class="container" ng-controller="masterDetailController">
-
+		<div class="row color">
+			<h4>Master-Details Sample Project</h4>
+		</div>
 		<div class="row">
 		    <div class="col s4">				
 		        <employee-list employees="employees"></employee-list>
@@ -21,7 +23,6 @@
 		    	<employee-details ng-if="!isEditMode && employees.length"></employee-details>
 		    	<employee-form ng-if="isEditMode"></employee-form>
 		    </div>
-
 		</div>
 	</div>
 </div>
@@ -33,7 +34,6 @@
 <script src="./js/directives/employeeList/employeeListDirective.js"></script>
 <script src="./js/directives/employeeForm/employeeFormDirective.js"></script>
 <script src="./js/directives/employeeDetails/employeeDetailsDirective.js"></script>
-
 
 </html>
 

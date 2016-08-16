@@ -11,8 +11,7 @@ angular.module('masterDetail').directive("employeeForm",function (EmployeeServic
         },
 
         controller: function($scope, $element, $attrs){
-          console.log("employeeForm directive executed");
-          
+                    
           $scope.employee = {
             first_name: "",
             last_name: "",
