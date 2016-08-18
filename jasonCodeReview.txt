@@ -1,0 +1,29 @@
+//////////////
+File - index.html
+
+- The meta tag is in the wrong place. 
+- Head tag is missing.
+- Script tags are in the wrong place.
+- Coding style needs to be improved.  The html inside of the body tag should be nested for calrity as well. The
+<div ng-app="masterDetail"> inside your body should be nested. 
+
+Google for proper html structure to find out how to fix these issues.
+
+//////////////
+app.js
+
+- See comments in file.  
+- Study: 
+	- https://github.com/johnpapa/angular-styleguide/tree/master/a1#iife
+	- https://developer.mozilla.org/en-US/docs/Glossary/Falsy
+	- https://docs.angularjs.org/guide/directive
+
+////////////////
+employeeDetailsDirective.js
+
+- See comments in file.
+
+////////////////
+employeeListDirective.js
+
+- See comments in file.

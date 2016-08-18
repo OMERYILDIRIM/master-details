@@ -5,12 +5,41 @@ var app = angular.module('masterDetail', []);
 		$scope.isEditMode = false;
 
 		// setting localStorage employees with an empty array for the very first time.
+
+		/* JSH CODE REVIEW - all localStorage manipulations should be handled by the EmployeeServices.
+		Think about how you can add this to the service.
+		*/
 		var isLocalStorageSet = localStorage.getItem("employees");
+
+		/* JSH CODE REVIEW - don't need to do all of this testing b/c null, undefined, "" are all "falsy".  
+		see: https://developer.mozilla.org/en-US/docs/Glossary/Falsy
+		Therefore you can just do: 
+
+		if(isLocalStorageSet){
+	
+		}
+
+		*/
 		if(isLocalStorageSet == null || isLocalStorageSet == undefined || isLocalStorageSet == "" ||isLocalStorageSet == "undefined" || isLocalStorageSet == "null"){			
 			EmployeeServices.setEmployees([])	
-		}			
+		}
+
+		/* JSH CODE REVIEW - This pattern of emitting events from your directives and listening in 
+		your controller is a bad practice because it will become very confusing and chaotic when the app gets
+		big.  It will also add a big overhead of listening for all these events.  It also creates a problem
+		with seperation of concerns because your directives have to make sure they emit unique events or else
+		they could conflict with some events of other directives or controllers.  Its better to have more 
+		encapsulation.
+		*/		
 		
-	  	$scope.$on('employeeSelected', function(){	  		  		
+	  	$scope.$on('employeeSelected', function(){
+	  	/* JSH CODE REVIEW - broadcasting an event to your employeeDetails directive is a bad pattern.
+	  	I want you to get rid of this all together.  Angular does a lot of things through data binding. In this
+	  	case, you your main app can have a selectedEmployee property that can be updated here when 
+	  	a new employee is selected.  Your employeeDetails directive should receive an 'employee' property
+	  	which will automatically update so you dont need to listen for events.  See the notes in 
+	  	that directive.  Also, see the notes in the employeeList directive about removing the 
+	  	events there as well. */		  		
 	  		$scope.$broadcast("showEmployeeDetails", function(){})
 	  	})
 
