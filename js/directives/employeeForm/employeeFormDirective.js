@@ -1,4 +1,4 @@
-angular.module('masterDetail').directive("employeeForm",function (EmployeeServices) {
+angular.module('masterDetail').directive("employeeForm",function () {
 
     return {
 
@@ -7,31 +7,13 @@ angular.module('masterDetail').directive("employeeForm",function (EmployeeServic
         replace: true,
         transclude: true,
         scope: {
-          
+            employee: "=",
+            save: "&onSave",
+            cancel: "&onCancel"
         },
 
         controller: function($scope, $element, $attrs){
-                    
-          $scope.employee = {
-            first_name: "",
-            last_name: "",
-            job_title: "",
-            address: "",
-            salary: "",
-            year: ""
-          }
-
-          $scope.saveEmployee = function(){            
-            $scope.$emit('saveAnEmployee', $scope.employee)
-          }
-
-          $scope.cancle = function(){
-            $scope.$emit('cancleAddingNewEmployee');
-          }
-
-          $scope.$on('editAnEmployeeInEmployeeForm', function(event, data){                 
-              $scope.employee = EmployeeServices.getEmployee();              
-          })
+        
         },
 
         link: function(scope, iElement, iAttrs){

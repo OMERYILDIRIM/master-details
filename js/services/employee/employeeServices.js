@@ -1,37 +1,24 @@
 angular.module('masterDetail').service('EmployeeServices', function(){
 
-	this.selectedEmpolyee = {};
-	this.editNewEmployee = false;
-   
+   var employees = window.localStorage.getItem('employees');   
+   if (employees === null || employees.length === 0)
+   {  
+      //setting an empty array if local storage is not set for the very first time
+      EmployeeServices.setEmployees([]) 
+   }
 
-   	this.setEmployee = function(selectEmployee){
-   		this.selectedEmpolyee = selectEmployee;
-   	}
+   this.setEmployees = function(employees){         
+      localStorage.setItem('employees', JSON.stringify(employees));
+   }
 
-   	this.getEmployee = function(){
-   		return this.selectedEmpolyee;
-   	}
+   this.getEmployees = function(){
+      var employeesString = localStorage.getItem("employees")                    
+      var employeesArray = JSON.parse(employeesString);         
+      return employeesArray;
+   }
 
-   	this.setEditType = function(flag){
-   		this.editNewEmployee = flag;
-   	}
-
-   	this.getEditType = function(){
-   		return this.editNewEmployee;
-   	}
-
-      this.setEmployees = function(employees){         
-         localStorage.setItem('employees', JSON.stringify(employees));
-      }
-
-      this.getEmployees = function(){
-         var employeesString = localStorage.getItem("employees")                    
-         var employeesArray = JSON.parse(employeesString);         
-         return employeesArray;
-      }
-
-      this.refresh = function(employeesArray){
-         this.setEmployees(employeesArray);
-         return this.getEmployees();
-      }
+   this.refresh = function(employeesArray){
+      this.setEmployees(employeesArray);
+      return this.getEmployees();
+   }
 });

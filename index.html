@@ -1,39 +1,45 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <html>
-	
-<title>Master-Detail</title>
-<link rel="stylesheet" href="css/materialize.min.css">
-<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+		<title>Master-Detail</title>
 
-<body>
+		<link rel="stylesheet" href="css/materialize.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">	
+	</head>
+	<body>
+		<div ng-app="masterDetail">
+			<div class="container" ng-controller="masterDetailController">
+				<div class="row color">
+					<h4>Master-Details Sample Project</h4>
+				</div>
+				<div class="row">
 
-<div ng-app="masterDetail">
-	<div class="container" ng-controller="masterDetailController">
-		<div class="row color">
-			<h4>Master-Details Sample Project</h4>
+				    <div class="col s4">				
+				        <employee-list employees="employees" employee="selectedEmployee" on-add-new="addEmployee()" on-select="selectEmployee(selectedIndex)"></employee-list>
+				    </div>
+
+				    <div class="col s7 offset-s1">		    	
+				    	
+				    	<employee-details employee="selectedEmployee" ng-show="!isEditMode && employees.length" on-delete="deleteEmployee()" on-edit="editEmployee()"></employee-details>
+				    	
+				    	<employee-form employee="selectedEmployee" on-cancel="cancelAddingEditing()" on-save="saveEmployee()" ng-show="isEditMode" ></employee-form>
+
+				    </div>
+
+				</div>
+			</div>
 		</div>
-		<div class="row">
-		    <div class="col s4">				
-		        <employee-list employees="employees"></employee-list>
-		    </div>
-
-		    <div class="col s7 offset-s1">		    	
-		    	<employee-details ng-if="!isEditMode && employees.length"></employee-details>
-		    	<employee-form ng-if="isEditMode"></employee-form>
-		    </div>
-		</div>
-	</div>
-</div>
-
-</body>
-<script src="./js/libs/angular.min.js"></script>
-<script src="./js/app.js"></script>
-<script src="./js/services/employee/employeeServices.js"></script>
-<script src="./js/directives/employeeList/employeeListDirective.js"></script>
-<script src="./js/directives/employeeForm/employeeFormDirective.js"></script>
-<script src="./js/directives/employeeDetails/employeeDetailsDirective.js"></script>
+	</body>
+	<script src="./js/libs/angular.min.js"></script>
+	<script src="./js/app.js"></script>
+	<script src="./js/services/employee/employeeServices.js"></script>
+	<script src="./js/directives/employeeList/employeeListDirective.js"></script>
+	<script src="./js/directives/employeeForm/employeeFormDirective.js"></script>
+	<script src="./js/directives/employeeDetails/employeeDetailsDirective.js"></script>
 
 </html>
 
