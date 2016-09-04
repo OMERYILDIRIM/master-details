@@ -1,5 +1,5 @@
 var app = angular.module('masterDetail', []);
-
+/* COMMENT - App is not running for me.  I get EmployeeServices not defined in employeeServices file.  */
 app.controller('masterDetailController', function($scope, EmployeeServices, $timeout) {
 
     $scope.isEditMode = false;
@@ -24,10 +24,14 @@ app.controller('masterDetailController', function($scope, EmployeeServices, $tim
         $scope.isEditMode = true;        
     }
 
-    $scope.deleteEmployee = function(){        
+    $scope.deleteEmployee = function(){  
+
+        /*COMMENT - I think you can combine this if statement to ($scope.employees.length && $scope.selectedEmployee) */
         if($scope.employees.length){            
             if($scope.selectedEmployee){
+                /*COMMENT - declare your variables at the top of the function to avoid surprises.*/
                 for(var iterator = 0; iterator < $scope.employees.length; iterator++ ){
+                    /*COMMENT best practice is to use the identity operator === */
                   if($scope.selectedEmployee.first_name == $scope.employees[iterator].first_name){
                     $scope.employees.splice(iterator,1);
                     $scope.employees = EmployeeServices.refresh($scope.employees) 
@@ -48,19 +52,19 @@ app.controller('masterDetailController', function($scope, EmployeeServices, $tim
     }
 
     $scope.saveEmployee = function(){
-        if($scope.isAddingNewEmployee){            
-            $scope.employees.push($scope.selectedEmployee);
-            $scope.employees = EmployeeServices.refresh($scope.employees)
-            $scope.selectedEmployee = $scope.employees[$scope.employees.length-1];
+        if($scope.isAddingNewEmployee){  
+            EmployeeServices.create($scope.selectedEmployee);          
             $scope.isAddingNewEmployee = false;    
-        }else{            
-            for(var iterator = 0; iterator< $scope.employees.length; iterator++){
-                if($scope.employees[iterator].first_name == $scope.selectedEmployee.first_name){
-                    $scope.employees[iterator] = $scope.selectedEmployee;                    
-                    $scope.employees = EmployeeServices.refresh($scope.employees)
-                    break;                      
-                }
-            }
+        }else{ 
+            EmployeeServices.update($scope.selectedEmployee);
+            /*COMMENT - declare variables at top of function */           
+            // for(var iterator = 0; iterator< $scope.employees.length; iterator++){
+            //     if($scope.employees[iterator].first_name == $scope.selectedEmployee.first_name){
+            //         $scope.employees[iterator] = $scope.selectedEmployee;                    
+            //         $scope.employees = EmployeeServices.refresh($scope.employees)
+            //         break;                      
+            //     }
+            // }
         }       
         $scope.isEditMode = false;
     }

@@ -1,24 +1,47 @@
 angular.module('masterDetail').service('EmployeeServices', function(){
 
-   var employees = window.localStorage.getItem('employees');   
-   if (employees === null || employees.length === 0)
-   {  
-      //setting an empty array if local storage is not set for the very first time
-      EmployeeServices.setEmployees([]) 
+   var employees;
+
+   initialize();
+
+   function initialize(){
+      employees = JSON.parse(localStorage.getItem("employees"));
+      if(!employees){ 
+         employees = [];
+      }
    }
 
-   this.setEmployees = function(employees){         
+   function getUniqueId() {
+      var highestId = 1;
+
+      employees.forEach(function(e){
+         if(e.id > highestId){ highestId = e.id; }
+      });
+
+      return ++highestId;
+   }
+
+   function saveEmployees(){         
       localStorage.setItem('employees', JSON.stringify(employees));
    }
 
    this.getEmployees = function(){
-      var employeesString = localStorage.getItem("employees")                    
-      var employeesArray = JSON.parse(employeesString);         
-      return employeesArray;
+      return employees;     
    }
 
    this.refresh = function(employeesArray){
       this.setEmployees(employeesArray);
       return this.getEmployees();
    }
+
+   this.create = function (employee) {
+      employee.id = getUniqueId();
+      employees.push(employee);
+      saveEmployees();
+   }
+
+   this.update = function (employee) {
+      saveEmployees();
+   };
+
 });
