@@ -44,4 +44,23 @@ angular.module('masterDetail').service('EmployeeServices', function(){
       saveEmployees();
    };
 
+   this.delete = function (employee) {
+      var iterator = 0, nextEmployeeToBeShown={};
+      if(employees.length && employee){         
+          for(iterator = 0; iterator < employees.length; iterator++ ){              
+            if(employee.id === employees[iterator].id){
+              employees.splice(iterator,1); 
+              if(iterator == 0){
+                  nextEmployeeToBeShown = employees[iterator];
+               }else{
+                  nextEmployeeToBeShown = employees[iterator-1];                            
+               }                     
+              break;
+            }
+          }  
+         saveEmployees();
+         return nextEmployeeToBeShown;      
+      } 
+   }
+
 });
